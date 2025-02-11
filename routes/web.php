@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,8 +18,17 @@ Route::get('menu', function() {
     return Inertia::render('AuthenticatedMenu');
 })->middleware('auth')->name('menu');
 
+// いずれ部屋一覧ページを作成する
+// Route::get('/room', [ReservationController::class, ''])->name('');
+
+Route::get('/room/{id}', [ReservationController::class, 'show'])->name('reservation.show');
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/users', [AdminController::class, 'showUsers']);
+    Route::post('/room/{id}', [ReservationController::class, 'create'])->name('reservation.create');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.show_user');
 });
 
 Route::get('/welcome', function () {
