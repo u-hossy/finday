@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,6 +16,10 @@ Route::get('/', function() {
 Route::get('menu', function() {
     return Inertia::render('AuthenticatedMenu');
 })->middleware('auth')->name('menu');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/users', [AdminController::class, 'showUsers']);
+});
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
