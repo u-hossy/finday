@@ -23,7 +23,7 @@ export default function ShowUsers({ users }: { users: User[] }) {
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
+                                            className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
                                         ></th>
                                         <th
                                             scope="col"
@@ -51,15 +51,15 @@ export default function ShowUsers({ users }: { users: User[] }) {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+                                <tbody className="divide-y divide-neutral-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
                                     {users.map((user) => (
                                         <tr key={user.id}>
-                                            <td className="whitespace-nowrap py-4">
-                                                <button className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-600">
+                                            <td className="whitespace-nowrap px-4 py-2">
+                                                <button className="rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400">
                                                     <img
                                                         src={editIcon}
                                                         alt="✏️"
-                                                        className="h-5 w-5"
+                                                        className="h-5 w-5 max-w-none"
                                                     />
                                                 </button>
                                             </td>
