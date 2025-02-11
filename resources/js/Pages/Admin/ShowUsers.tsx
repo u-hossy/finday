@@ -4,7 +4,6 @@ import { Head } from "@inertiajs/react";
 
 export default function ShowUsers({ users }: { users: User[] }) {
     const pageName = "登録されているユーザーの閲覧";
-    console.log(users);
     return (
         <Authenticated
             header={
