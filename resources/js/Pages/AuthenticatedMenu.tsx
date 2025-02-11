@@ -1,16 +1,17 @@
-import Authenticated from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import Authenticated from "@/Layouts/AuthenticatedLayout";
+import { Head } from "@inertiajs/react";
 
 export default function AuthenticatedHome() {
+    const pageName = "メニュー";
     return (
         <Authenticated
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    トップ
+                    {pageName}
                 </h2>
             }
         >
-            <Head title="トップ" />
+            <Head title={pageName} />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">

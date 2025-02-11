@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function() {
-    return Inertia::render('AuthenticatedHome');
-})->middleware("auth");
-
-Route::get('/', function() {
+    if (Auth::check()) {
+        return redirect()->route('menu');
+    }
     return Inertia::render('Landing');
 });
+
+Route::get('menu', function() {
+    return Inertia::render('AuthenticatedMenu');
+})->middleware('auth')->name('menu');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
