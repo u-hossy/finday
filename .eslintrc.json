@@ -23,7 +23,9 @@
             "error",
             {
                 "singleQuote": false,
-                "parser": "flow"
+                "parser": "flow",
+                "semi": ["error", "never"],
+                "comma-dangle": ["error", "never"]
             }
         ]
     },
