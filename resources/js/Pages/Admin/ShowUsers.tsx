@@ -47,7 +47,19 @@ export default function ShowUsers({ users }: { users: User[] }) {
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
                                         >
+                                            メールアドレス
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
+                                        >
                                             更新日時
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
+                                        >
+                                            登録日時
                                         </th>
                                     </tr>
                                 </thead>
@@ -75,8 +87,16 @@ export default function ShowUsers({ users }: { users: User[] }) {
                                                     : "いいえ"}
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4">
+                                                {user.email}
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4">
                                                 {new Date(
                                                     user.updated_at,
+                                                ).toLocaleString("ja-JP")}
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4">
+                                                {new Date(
+                                                    user.created_at,
                                                 ).toLocaleString("ja-JP")}
                                             </td>
                                         </tr>
