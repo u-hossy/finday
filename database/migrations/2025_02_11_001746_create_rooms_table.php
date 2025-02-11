@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('useable');
-            $table->unsignedBigInteger('key_status');
+            $table->unsignedBigInteger('who_has_key')->nullable();
             $table->timestamps();
         });
     }
