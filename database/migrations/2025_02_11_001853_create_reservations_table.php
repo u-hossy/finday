@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->integer('time');
+            $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('band_id');
             $table->boolean('over_reservable'); // ごめんなさい制度用
             $table->timestamps();
