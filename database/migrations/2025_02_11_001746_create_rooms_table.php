@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('useable');
+            $table->unsignedBigInteger('key_status');
             $table->timestamps();
         });
     }

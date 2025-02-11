@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('time');
+            $table->unsignedBigInteger('band_id');
+            $table->boolean('over_reservable'); // ごめんなさい制度用
             $table->timestamps();
         });
     }

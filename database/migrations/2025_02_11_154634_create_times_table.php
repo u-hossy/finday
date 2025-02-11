@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bands', function (Blueprint $table) {
+        Schema::create('times', function (Blueprint $table) {
             $table->id();
+            $table->integer('time_id');
             $table->string('name');
+            $table->time('starts_at');
+            $table->time('ends_at');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bands');
+        Schema::dropIfExists('times');
     }
 };
