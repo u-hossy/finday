@@ -18,7 +18,13 @@ export default function Show({
     console.log(reservations);
     console.log(userId);
     return userId ? (
-        <Authenticated>
+        <Authenticated
+            header={
+                <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    {pageName}
+                </h2>
+            }
+        >
             <TimeTable
                 pageName={pageName}
                 room={room}

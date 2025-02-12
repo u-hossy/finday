@@ -48,7 +48,9 @@ export default function TimeTable({
         <>
             <Head title={pageName} />
             <div className="container mx-auto overflow-x-auto py-4">
-                <h1 className="mb-4 text-2xl font-bold">{pageName}</h1>
+                {!userId && (
+                    <h1 className="mb-4 text-2xl font-bold">{pageName}</h1>
+                )}
                 <table className="min-w-full table-fixed bg-white dark:bg-gray-800">
                     <thead>
                         <tr>
