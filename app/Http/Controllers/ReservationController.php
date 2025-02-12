@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Room;
+use App\Models\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -38,11 +39,13 @@ class ReservationController extends Controller
 
         $room = Room::where('id', $id)->get();
         $reservations = Reservation::where('room_id', $id)->get();
+        $times = Time::all();
         $user_id = Auth::id();
 
         return Inertia::render('Reservation/Show', [
             'room' => $room,
             'reservations' => $reservations,
+            'times' => $times,
             'userId' => $user_id,
         ]);
     }

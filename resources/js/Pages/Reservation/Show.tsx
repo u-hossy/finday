@@ -1,37 +1,17 @@
+import TimeTable from "@/Components/TimeTable";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Reservation, Room } from "@/types";
-import { Head } from "@inertiajs/react";
-
-function Table({
-    pageName,
-    room,
-    reservations,
-    userId,
-}: {
-    pageName: string,
-    room: Room[],
-    reservations: Reservation[],
-    userId?: number,
-}) {
-    console.log(room);
-    console.log(reservations);
-    console.log(userId);
-    return (
-        <>
-            <Head title={pageName} />
-            <p>table</p>
-        </>
-    );
-}
+import { Reservation, Room, Time } from "@/types";
 
 export default function Show({
     room,
     reservations,
+    times,
     userId,
 }: {
-    room: Room[],
-    reservations: Reservation[],
-    userId: number,
+    room: Room[];
+    reservations: Reservation[];
+    times: Time[];
+    userId: number;
 }) {
     const pageName = `${room[0].name}の予約状況`;
     console.log(room);
@@ -39,19 +19,21 @@ export default function Show({
     console.log(userId);
     return userId ? (
         <Authenticated>
-            <Table
+            <TimeTable
                 pageName={pageName}
                 room={room}
                 reservations={reservations}
+                times={times}
                 userId={userId}
             />
         </Authenticated>
     ) : (
         <div>
-            <Table
+            <TimeTable
                 pageName={pageName}
                 room={room}
                 reservations={reservations}
+                times={times}
             />
         </div>
     );
