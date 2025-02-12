@@ -89,8 +89,8 @@ export default function TimeTable({
                                             .map((reservation) => (
                                                 <div key={reservation.id}>
                                                     <p>
-                                                        バンドID:{" "}
-                                                        {reservation.band_id}
+                                                        バンド名:{" "}
+                                                        {reservation.band.name}
                                                     </p>
                                                     <p>
                                                         ごめんなさい:{" "}

@@ -30,6 +30,7 @@ export interface Reservation {
     time: number;
     room_id: number;
     band_id: number;
+    band: Band;
     over_reservable: boolean;
     created_at: string;
     updated_at: string;

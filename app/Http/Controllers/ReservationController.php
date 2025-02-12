@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Band;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Time;
@@ -38,7 +39,7 @@ class ReservationController extends Controller
     public function show($id) {
 
         $room = Room::where('id', $id)->get();
-        $reservations = Reservation::where('room_id', $id)->get();
+        $reservations = Reservation::with('band')->where('room_id', $id)->get();
         $times = Time::all();
         $user_id = Auth::id();
 

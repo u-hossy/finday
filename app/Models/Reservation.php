@@ -13,4 +13,9 @@ class Reservation extends Model
         'band_id',
         'over_reservable',
     ];
+
+    public function band()
+    {
+        return $this->belongsTo(Band::class);
+    }
 }
