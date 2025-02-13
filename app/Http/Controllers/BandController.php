@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Band;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BandController extends Controller
 {
@@ -12,7 +13,11 @@ class BandController extends Controller
      */
     public function index()
     {
-        //
+        $bands = Band::with('bandMembers.user')->get();
+
+        return Inertia::render('Band/Index', [
+            'bands' => $bands,
+        ]);
     }
 
     /**
@@ -35,7 +40,6 @@ class BandController extends Controller
         $band = Band::create([
             'name' => $request->name,
         ]);
-
     }
 
     /**
@@ -51,7 +55,12 @@ class BandController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $bands = Band::all();
+
+        return Inertia::render('Band/Edit', [
+            'bands' => $bands,
+            'status' => session('status'),
+        ]);
     }
 
     /**
@@ -62,9 +71,9 @@ class BandController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
-    
+
         $band = Band::findOrFail($id);
-    
+
         $band->name = $request->name;
         $band->save();
     }
@@ -75,7 +84,7 @@ class BandController extends Controller
     public function destroy(string $id)
     {
         $band = Band::findOrFail($id);
-        
-        $band -> delete();
+
+        $band->delete();
     }
 }

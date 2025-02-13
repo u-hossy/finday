@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
@@ -7,14 +8,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function() {
+Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('menu');
     }
     return Inertia::render('Landing');
 });
 
-Route::get('menu', function() {
+Route::get('menu', function () {
     return Inertia::render('AuthenticatedMenu');
 })->middleware('auth')->name('menu');
 
@@ -50,4 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware('auth')->group(function () {
+    Route::get('/band', [BandController::class, 'index'])->name('band.index');
+    Route::get('/band/{id}', [BandController::class, 'edit'])->name('band.edit');
+    Route::patch('/band', [BandController::class, 'update'])->name('band.update');
+    Route::delete('/band', [BandController::class, 'destroy'])->name('band.destroy');
+});
+
+require __DIR__ . '/auth.php';

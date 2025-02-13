@@ -12,6 +12,7 @@ export interface User {
 export interface Band {
     id: number;
     name: string;
+    band_members: BandMember[];
     created_at: string;
     updated_at: string;
 }
@@ -20,6 +21,7 @@ export interface BandMember {
     id: number;
     band_id: number;
     user_id: number;
+    user: User;
     created_at: string;
     updated_at: string;
 }
