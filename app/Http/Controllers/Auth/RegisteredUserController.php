@@ -32,14 +32,22 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'student_id' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'invitation_code' => 'required|string|max:255',
         ]);
+
+        $invitation_code = env('APP_REGISTER_INVITATION_CODE');
+        $is_verified = $request->invitation_code === $invitation_code;
 
         $user = User::create([
             'name' => $request->name,
+            'student_id' => $request->student_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'admin' => false,
+            'verified' => $is_verified,
         ]);
 
         event(new Registered($user));

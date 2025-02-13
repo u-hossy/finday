@@ -9,9 +9,11 @@ import { FormEventHandler } from "react";
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
+        student_id: "",
         email: "",
         password: "",
         password_confirmation: "",
+        invitation_code: "",
     });
 
     const submit: FormEventHandler = (e) => {
@@ -42,6 +44,22 @@ export default function Register() {
                     />
 
                     <InputError message={errors.name} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="student_id" value="学籍番号" />
+
+                    <TextInput
+                        id="student_id"
+                        name="student_id"
+                        value={data.student_id}
+                        className="mt-1 block w-full"
+                        isFocused={true}
+                        onChange={(e) => setData("student_id", e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.student_id} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -99,6 +117,26 @@ export default function Register() {
 
                     <InputError
                         message={errors.password_confirmation}
+                        className="mt-2"
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="invitation_code" value="招待コード" />
+
+                    <TextInput
+                        id="invitation_code"
+                        name="invitation_code"
+                        value={data.invitation_code}
+                        className="mt-1 block w-full"
+                        isFocused={true}
+                        onChange={(e) =>
+                            setData("invitation_code", e.target.value)
+                        }
+                    />
+
+                    <InputError
+                        message={errors.invitation_code}
                         className="mt-2"
                     />
                 </div>
