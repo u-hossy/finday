@@ -11,15 +11,16 @@ export default function UpdateProfileInformation({
     status,
     className = "",
 }: {
-    mustVerifyEmail: boolean,
-    status?: string,
-    className?: string,
+    mustVerifyEmail: boolean;
+    status?: string;
+    className?: string;
 }) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: user.name,
+            student_id: user.student_id,
             email: user.email,
         });
 
@@ -33,17 +34,17 @@ export default function UpdateProfileInformation({
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    Profile Information
+                    ユーザー情報
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Update your account's profile information and email address.
+                    本システムに登録されているユーザー情報の変更ができます。
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value="お名前" />
 
                     <TextInput
                         id="name"
@@ -56,6 +57,20 @@ export default function UpdateProfileInformation({
                     />
 
                     <InputError className="mt-2" message={errors.name} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="student_id" value="学籍番号" />
+
+                    <TextInput
+                        id="student_id"
+                        className="mt-1 block w-full"
+                        value={data.student_id}
+                        onChange={(e) => setData("student_id", e.target.value)}
+                        required
+                    />
+
+                    <InputError className="mt-2" message={errors.student_id} />
                 </div>
 
                 <div>
