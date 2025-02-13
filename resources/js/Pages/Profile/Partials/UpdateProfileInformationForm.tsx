@@ -11,9 +11,9 @@ export default function UpdateProfileInformation({
     status,
     className = "",
 }: {
-    mustVerifyEmail: boolean;
-    status?: string;
-    className?: string;
+    mustVerifyEmail: boolean,
+    status?: string,
+    className?: string,
 }) {
     const user = usePage().props.auth.user;
 
