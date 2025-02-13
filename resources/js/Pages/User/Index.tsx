@@ -3,7 +3,7 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { User } from "@/types";
 import { Head } from "@inertiajs/react";
 
-export default function ShowUsers({ users }: { users: User[] }) {
+export default function Index({ users }: { users: User[] }) {
     const pageName = "登録されているユーザーの管理";
     return (
         <Authenticated
