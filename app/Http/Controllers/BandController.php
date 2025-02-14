@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Band;
+use App\Models\BandMember;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class BandController extends Controller
@@ -55,11 +58,13 @@ class BandController extends Controller
      */
     public function edit(string $id)
     {
-        $bands = Band::all();
+        $band = Band::with('band_members')->find($id);
+        $users = User::all();
 
         return Inertia::render('Bands/Edit', [
-            'bands' => $bands,
+            'band' => $band,
             'status' => session('status'),
+            'users' => $users,
         ]);
     }
 
@@ -70,12 +75,18 @@ class BandController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'band_members' => ['required', 'array'],
+            'band_members.*' => ['exists:users,id'],
         ]);
 
         $band = Band::findOrFail($id);
 
         $band->name = $request->name;
         $band->save();
+
+        $band->band_members()->sync($request->band_members);
+
+        return Redirect::route('bands.edit', $band->id)->with('success', 'バンド情報が更新されました。');
     }
 
     /**
@@ -86,5 +97,6 @@ class BandController extends Controller
         $band = Band::findOrFail($id);
 
         $band->delete();
+        return Redirect::route('band.index')->with('success', 'バンドが削除されました。');
     }
 }

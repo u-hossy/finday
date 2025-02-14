@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Band extends Model
 {
@@ -11,8 +11,8 @@ class Band extends Model
         'name',
     ];
 
-    public function bandMembers(): HasMany
+    public function band_members(): belongsToMany // hasMany から BelongsToManyに変えたらおかしくなった
     {
-        return $this->hasMany(BandMember::class);
+        return $this->belongsToMany(BandMember::class);
     }
 }

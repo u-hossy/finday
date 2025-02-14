@@ -10,11 +10,11 @@ export default function TimeTable({
     times,
     userId,
 }: {
-    pageName: string;
-    room: Room[];
-    reservations: Reservation[];
-    times: Time[];
-    userId?: number;
+    pageName: string,
+    room: Room[],
+    reservations: Reservation[],
+    times: Time[],
+    userId?: number,
 }) {
     console.log(room);
     console.log(reservations);

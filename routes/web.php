@@ -55,8 +55,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/bands', [BandController::class, 'index'])->name('band.index');
     Route::get('/bands/{id}', [BandController::class, 'edit'])->name('band.edit');
-    Route::patch('/bands', [BandController::class, 'update'])->name('band.update');
-    Route::delete('/bands', [BandController::class, 'destroy'])->name('band.destroy');
+    Route::patch('/bands/{id}', [BandController::class, 'update'])->name('band.update');
+    Route::delete('/bands/{id}', [BandController::class, 'destroy'])->name('band.destroy');
 });
 
 require __DIR__ . '/auth.php';
