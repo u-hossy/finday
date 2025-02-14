@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Band;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Time;
@@ -12,7 +11,8 @@ use Inertia\Inertia;
 
 class ReservationController extends Controller
 {
-    public function create(Request $request, $id) {
+    public function create(Request $request, $id)
+    {
         $user_id = Auth::id();
 
         $validated = $request->validate([
@@ -30,20 +30,21 @@ class ReservationController extends Controller
             'over_reservable' => $validated['over_reservable'],
         ]);
 
-        return Inertia::render('Reservation/Result', [
+        return Inertia::render('Reservations/Create', [
             'reservation' => $reservation,
             'userId' => $user_id,
         ]);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
 
         $room = Room::where('id', $id)->get();
         $reservations = Reservation::with('band')->where('room_id', $id)->get();
         $times = Time::all();
         $user_id = Auth::id();
 
-        return Inertia::render('Reservation/Show', [
+        return Inertia::render('Reservations/Show', [
             'room' => $room,
             'reservations' => $reservations,
             'times' => $times,
@@ -51,4 +52,3 @@ class ReservationController extends Controller
         ]);
     }
 }
-

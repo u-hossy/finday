@@ -23,14 +23,14 @@ Route::get('menu', function () {
 // いずれ部屋一覧ページを作成する
 // Route::get('/room', [ReservationController::class, ''])->name('');
 
-Route::get('/room/{id}', [ReservationController::class, 'show'])->name('reservation.show');
+Route::get('/rooms/{id}', [ReservationController::class, 'show'])->name('reservation.show');
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/room/{id}', [ReservationController::class, 'create'])->name('reservation.create');
+    Route::post('/rooms/{id}', [ReservationController::class, 'create'])->name('reservation.create');
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.show_user');
+    Route::get('/users', [UserController::class, 'index'])->name('admin.show_user');
 });
 
 Route::get('/welcome', function () {
@@ -53,10 +53,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/band', [BandController::class, 'index'])->name('band.index');
-    Route::get('/band/{id}', [BandController::class, 'edit'])->name('band.edit');
-    Route::patch('/band', [BandController::class, 'update'])->name('band.update');
-    Route::delete('/band', [BandController::class, 'destroy'])->name('band.destroy');
+    Route::get('/bands', [BandController::class, 'index'])->name('band.index');
+    Route::get('/bands/{id}', [BandController::class, 'edit'])->name('band.edit');
+    Route::patch('/bands', [BandController::class, 'update'])->name('band.update');
+    Route::delete('/bands', [BandController::class, 'destroy'])->name('band.destroy');
 });
 
 require __DIR__ . '/auth.php';

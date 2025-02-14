@@ -15,7 +15,7 @@ class BandController extends Controller
     {
         $bands = Band::with('bandMembers.user')->get();
 
-        return Inertia::render('Band/Index', [
+        return Inertia::render('Bands/Index', [
             'bands' => $bands,
         ]);
     }
@@ -57,7 +57,7 @@ class BandController extends Controller
     {
         $bands = Band::all();
 
-        return Inertia::render('Band/Edit', [
+        return Inertia::render('Bands/Edit', [
             'bands' => $bands,
             'status' => session('status'),
         ]);

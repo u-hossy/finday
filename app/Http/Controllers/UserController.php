@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return Inertia::render('User/Index', [
+        return Inertia::render('Users/Index', [
             'users' => $users,
         ]);
     }

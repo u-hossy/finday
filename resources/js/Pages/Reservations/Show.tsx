@@ -8,10 +8,10 @@ export default function Show({
     times,
     userId,
 }: {
-    room: Room[];
-    reservations: Reservation[];
-    times: Time[];
-    userId: number;
+    room: Room[],
+    reservations: Reservation[],
+    times: Time[],
+    userId: number,
 }) {
     const pageName = `${room[0].name}の予約状況`;
     console.log(room);
