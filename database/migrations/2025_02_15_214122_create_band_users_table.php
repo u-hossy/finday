@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('band_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Band::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Band::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
