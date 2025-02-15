@@ -12,7 +12,7 @@ export interface User {
 export interface Band {
     id: number;
     name: string;
-    band_members: BandMember[];
+    users: User[];
     created_at: string;
     updated_at: string;
 }

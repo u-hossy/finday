@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(BandsTableSeeder::class);
-        $this->call(BandMembersTableSeeder::class);
         $this->call(ReservationTableSeeder::class);
         $this->call(RoomsTableSeeder::class);
         $this->call(TimesTableSeeder::class);
         User::factory(50)->create();
+
+        $this->call(BandUsersTableSeeder::class);
 
     }
 }

@@ -11,8 +11,8 @@ class Band extends Model
         'name',
     ];
 
-    public function band_members(): belongsToMany // hasMany から BelongsToManyに変えたらおかしくなった
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(BandMember::class);
+        return $this->belongsToMany(User::class, 'band_users');
     }
 }

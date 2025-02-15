@@ -69,12 +69,11 @@ export default function Index({ bands }: { bands: Band[] }) {
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4">
                                                 <ul>
-                                                    {band.band_members.map(
-                                                        (member) => (
-                                                            <li key={member.id}>
+                                                    {band.users.map(
+                                                        (user) => (
+                                                            <li key={user.id}>
                                                                 {
-                                                                    member.user
-                                                                        .name
+                                                                    user.name
                                                                 }
                                                             </li>
                                                         ),

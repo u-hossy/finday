@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\BandMember;
+use App\Models\BandUsers;
 use Illuminate\Database\Seeder;
 
-class BandMembersTableSeeder extends Seeder
+class BandUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $bandMembers = [
+        $bandUsers = [
             ['band_id' => 1, 'user_id' => 1],
             ['band_id' => 1, 'user_id' => 2],
             ['band_id' => 1, 'user_id' => 3],
@@ -40,8 +40,8 @@ class BandMembersTableSeeder extends Seeder
             ['band_id' => 5, 'user_id' => 25],
         ];
 
-        foreach ($bandMembers as $member) {
-            BandMember::create($member);
+        foreach ($bandUsers as $bandUser) {
+            BandUsers::create($bandUser);
         }
     }
 }

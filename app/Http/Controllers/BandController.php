@@ -16,7 +16,7 @@ class BandController extends Controller
      */
     public function index()
     {
-        $bands = Band::with('bandMembers.user')->get();
+        $bands = Band::with('users')->get();
 
         return Inertia::render('Bands/Index', [
             'bands' => $bands,
