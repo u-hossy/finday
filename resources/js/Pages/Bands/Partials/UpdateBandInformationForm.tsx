@@ -23,7 +23,7 @@ export default function UpdateBandInformation({
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: band.name,
-            band_members: band.band_members.map((member) => member.user_id),
+            users: band.users.map((user) => user.id),
         });
 
     const submit: FormEventHandler = (e) => {
@@ -62,16 +62,16 @@ export default function UpdateBandInformation({
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="band_members" value="メンバー" />
+                    <InputLabel htmlFor="users" value="メンバー" />
 
                     <select
-                        id="band_members"
+                        id="users"
                         className="mt-1 block w-full"
                         multiple
-                        value={data.band_members.map(String)}
+                        value={data.users.map(String)}
                         onChange={(e) =>
                             setData(
-                                "band_members",
+                                "users",
                                 Array.from(e.target.selectedOptions, (option) =>
                                     Number(option.value),
                                 ),
@@ -87,7 +87,7 @@ export default function UpdateBandInformation({
 
                     <InputError
                         className="mt-2"
-                        message={errors.band_members}
+                        message={errors.users}
                     />
                 </div>
 

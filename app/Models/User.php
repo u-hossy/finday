@@ -60,6 +60,6 @@ class User extends Authenticatable
 
     public function bands(): BelongsToMany
     {
-        return $this->belongsToMany(Band::class);
+        return $this->belongsToMany(Band::class)->withTimestamps();
     }
 }

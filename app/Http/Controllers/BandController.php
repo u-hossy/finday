@@ -58,7 +58,7 @@ class BandController extends Controller
      */
     public function edit(string $id)
     {
-        $band = Band::with('band_members')->find($id);
+        $band = Band::with('users')->find($id);
         $users = User::all();
 
         return Inertia::render('Bands/Edit', [
@@ -75,8 +75,8 @@ class BandController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'band_members' => ['required', 'array'],
-            'band_members.*' => ['exists:users,id'],
+            'users' => ['required', 'array'],
+            'users.*' => ['exists:users,id'],
         ]);
 
         $band = Band::findOrFail($id);
@@ -84,9 +84,9 @@ class BandController extends Controller
         $band->name = $request->name;
         $band->save();
 
-        $band->band_members()->sync($request->band_members);
+        $band->users()->sync($request->users);
 
-        return Redirect::route('bands.edit', $band->id)->with('success', 'バンド情報が更新されました。');
+        return Redirect::route('band.edit', $band->id)->with('success', 'バンド情報が更新されました。');
     }
 
     /**

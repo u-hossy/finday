@@ -13,6 +13,6 @@ class Band extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'band_users');
+        return $this->belongsToMany(User::class, 'band_users')->withTimestamps();
     }
 }
