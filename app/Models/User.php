@@ -22,8 +22,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'admin',
         'verified',
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        'admin',
     ];
 
     /**
