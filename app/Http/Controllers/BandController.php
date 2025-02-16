@@ -58,7 +58,7 @@ class BandController extends Controller
      */
     public function edit(string $id)
     {
-        $band = Band::with('users')->find($id);
+        $band = Band::with('users')->findOrFail($id);
         $users = User::all();
 
         return Inertia::render('Bands/Edit', [
