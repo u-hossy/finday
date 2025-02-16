@@ -25,6 +25,7 @@ export default function DeleteBandForm({
         processing,
         reset,
         errors,
+        setError,
         clearErrors,
     } = useForm({
         confirm: "",
@@ -36,13 +37,20 @@ export default function DeleteBandForm({
 
     const deleteBand: FormEventHandler = (e) => {
         e.preventDefault();
+        clearErrors();
 
-        destroy(route("band.destroy"), {
-            preserveScroll: true,
-            onSuccess: () => closeModal(),
-            onError: () => confirmInput.current?.focus(),
-            onFinish: () => reset(),
-        });
+        if (data.confirm === band.name) {
+            destroy(route("band.destroy", { id: band.id }), {
+                preserveScroll: true,
+                onSuccess: () => closeModal(),
+                onError: () => confirmInput.current?.focus(),
+                onFinish: () => reset(),
+            });
+        } else {
+            setError("confirm", "入力が一致しません");
+            confirmInput.current?.focus();
+            setData("confirm", "");
+        }
     };
 
     const closeModal = () => {

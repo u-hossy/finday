@@ -20,6 +20,7 @@ class BandController extends Controller
 
         return Inertia::render('Bands/Index', [
             'bands' => $bands,
+            'status' => session('status'),
         ]);
     }
 
@@ -63,7 +64,7 @@ class BandController extends Controller
 
         return Inertia::render('Bands/Edit', [
             'band' => $band,
-            'status' => session('status'),
+            // 'status' => session('status'),
             'users' => $users,
         ]);
     }
@@ -86,7 +87,7 @@ class BandController extends Controller
 
         $band->users()->sync($request->users);
 
-        return Redirect::route('band.edit', $band->id)->with('success', 'バンド情報が更新されました。');
+        return Redirect::route('band.edit', $band->id)->with('status', 'バンド情報が更新されました');
     }
 
     /**
@@ -97,6 +98,6 @@ class BandController extends Controller
         $band = Band::findOrFail($id);
 
         $band->delete();
-        return Redirect::route('band.index')->with('success', 'バンドが削除されました。');
+        return Redirect::route('band.index')->with('status', 'バンドが削除されました');
     }
 }

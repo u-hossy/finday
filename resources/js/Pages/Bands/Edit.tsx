@@ -6,15 +6,14 @@ import UpdateBandInformationForm from "./Partials/UpdateBandInformationForm";
 
 export default function Edit({
     band,
-    status,
+    // status,
     users,
 }: PageProps<{
     band: Band,
-    status?: string,
+    // status?: string,
     users: User[],
 }>) {
     const pageName = `${band.name} の情報の編集`;
-    console.log(status);
     return (
         <AuthenticatedLayout
             header={

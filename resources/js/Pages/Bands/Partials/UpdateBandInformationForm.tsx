@@ -18,8 +18,6 @@ export default function UpdateBandInformation({
     className?: string,
     users: User[],
 }) {
-    console.log(band);
-
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: band.name,
@@ -85,10 +83,7 @@ export default function UpdateBandInformation({
                         ))}
                     </select>
 
-                    <InputError
-                        className="mt-2"
-                        message={errors.users}
-                    />
+                    <InputError className="mt-2" message={errors.users} />
                 </div>
 
                 <div className="flex items-center gap-4">
