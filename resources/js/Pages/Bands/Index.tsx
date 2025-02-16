@@ -1,7 +1,7 @@
 import editIcon from "@/../assets/icon-edit.svg";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Band } from "@/types";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 export default function Index({ bands }: { bands: Band[] }) {
     const pageName = "登録されているバンド一覧";
@@ -25,7 +25,9 @@ export default function Index({ bands }: { bands: Band[] }) {
                                         <th
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
-                                        ></th>
+                                        >
+                                            編集
+                                        </th>
                                         <th
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-300"
@@ -56,13 +58,15 @@ export default function Index({ bands }: { bands: Band[] }) {
                                     {bands.map((band) => (
                                         <tr key={band.id}>
                                             <td className="whitespace-nowrap px-4 py-2">
-                                                <button className="rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400">
-                                                    <img
-                                                        src={editIcon}
-                                                        alt="✏️"
-                                                        className="h-5 w-5 max-w-none"
-                                                    />
-                                                </button>
+                                                <Link href={`/bands/${band.id}`}>
+                                                    <button className="rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400">
+                                                        <img
+                                                            src={editIcon}
+                                                            alt="✏️"
+                                                            className="h-5 w-5 max-w-none"
+                                                        />
+                                                    </button>
+                                                </Link>
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4">
                                                 {band.name}
@@ -98,6 +102,6 @@ export default function Index({ bands }: { bands: Band[] }) {
                     </div>
                 </div>
             </div>
-        </Authenticated>
+        </Authenticated >
     );
 }
