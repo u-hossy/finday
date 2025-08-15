@@ -13,7 +13,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('menu');
     }
-    return Inertia::render('Landing');
+    return Inertia::render('GuestMenu');
 });
 
 Route::get('menu', function () {

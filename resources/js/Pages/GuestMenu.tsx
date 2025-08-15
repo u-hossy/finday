@@ -1,6 +1,6 @@
 import MenuLayout from "@/Layouts/MenuLayout";
 
-export default function AuthenticatedMenu() {
+export default function GuestMenu() {
     return (
         <>
             <MenuLayout>
