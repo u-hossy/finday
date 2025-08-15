@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// ログイン前
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('menu');
@@ -16,47 +18,30 @@ Route::get('/', function () {
     return Inertia::render('GuestMenu');
 });
 
-Route::get('menu', function () {
-    return Inertia::render('AuthenticatedMenu');
-})->middleware('auth')->name('menu');
-
-// いずれ部屋一覧ページを作成する
-// Route::get('/room', [ReservationController::class, ''])->name('');
-
-Route::get('/rooms/{id}', [ReservationController::class, 'show'])->name('reservation.show');
-
-Route::middleware(['auth'])->group(function () {
-    Route::post('/rooms/{id}', [ReservationController::class, 'create'])->name('reservation.create');
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('admin.show_user');
-});
-
-Route::get('/welcome', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// ログイン後メニュー
 Route::middleware('auth')->group(function () {
+    Route::get('/menu', function () {
+        return Inertia::render('AuthenticatedMenu');
+    })->name('menu');
+
+    // 部屋予約
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation/{id}', [ReservationController::class, 'show'])->name('reservation.show');
+    Route::get('/reservation/create', [ReservationController::class, 'create'])->name('reservation.create_form');
+    Route::post('/reservation/create', [ReservationController::class, 'store'])->name('reservation.store');
+
+    // 日程調整
+    // Route::get('/schedule', [\App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule.index');
+
+    // バンド管理
+    // Route::get('/band', [BandController::class, 'index'])->name('band.index');
+
+    // プロフィール
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/bands', [BandController::class, 'index'])->name('band.index');
-    Route::get('/bands/{id}', [BandController::class, 'edit'])->name('band.edit');
-    Route::patch('/bands/{id}', [BandController::class, 'update'])->name('band.update');
-    Route::delete('/bands/{id}', [BandController::class, 'destroy'])->name('band.destroy');
+    // 管理者画面
+    // Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 });
 
 require __DIR__ . '/auth.php';
